@@ -1,6 +1,6 @@
 # Pursuit-Core-Web-Props-Lab
 
-![goFundMe](./images/goFundMe.pn)
+![goFundMe](./goFundMe.png)
 
 Build a React app modeled after the image above.  Included in this repo is an html file that renders a static version in HTML.  Your React app should have the following components:
 
