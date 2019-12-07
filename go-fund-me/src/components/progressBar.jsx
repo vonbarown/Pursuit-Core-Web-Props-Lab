@@ -1,9 +1,8 @@
 import React from 'react'
 
 class ProgressBar extends React.Component {
-
     render() {
-        this.percent = (this.props.raised / this.props.goal) * 100
+        this.percent = parseInt((this.props.raised / this.props.goal) * 100)
         return (<>
             <h2 className="mb-4">
                 Raised $ {this.props.raised} of <span className="text-muted">$ {this.props.goal}</span>

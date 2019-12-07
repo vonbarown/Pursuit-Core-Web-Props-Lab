@@ -3,22 +3,22 @@ import "./App.css";
 import Form from "./components/donationForm";
 import Donors from "./components/donators";
 import ProgressBar from "./components/progressBar";
+import TopBar from "./components/topBar";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       donors: [
-        { name: "Voniel", amount: 450, blurb: "Help" },
-        { name: "Otis", amount: 340, blurb: "look for me" },
-        { name: "Frank", amount: 600, blurb: "monies" }
+        // { name: "Voniel", amount: 450, blurb: "Help" },
+        // { name: "Otis", amount: 340, blurb: "look for me" },
+        // { name: "Frank", amount: 600, blurb: "monies" }
       ],
       name: "",
       amount: 0,
       blurb: "",
       goal: 20000,
-      raised: 0,
-      percentCompleted: 0
+      raised: 0
     };
 
     // handle change for the form
@@ -37,14 +37,10 @@ class App extends React.Component {
       this.setState({
         raised: raised + parseInt(amount),
         donors: [...this.state.donors, newDonor],
-        // percentCompleted: raised / goal
-      });
-    };
 
-    this.calcPercentage = () => {
-      const { goal, raised } = this.state;
-      this.setState({
-        percentCompleted: raised / goal 
+        // name: '',
+        // amount: 0,
+        // blurb:''
       });
     };
   }
@@ -68,14 +64,21 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        
+        <TopBar motivation='Help me get a Disney+ account' />
+        
         <div className="container">
-          <div className="row">
+        <div className="row">
             <ul className="col-4 list-unstyled recent-donations">
               <h5>Recent Donations</h5>
               {listItems}
             </ul>
             <div className="col-8">
-              <ProgressBar raised={raised} goal={goal} />
+              
+              <ProgressBar
+                raised={raised}
+                goal={goal}
+              />
               <hr />
               <Form
                 handleNewDonation={this.handleNewDonation}
