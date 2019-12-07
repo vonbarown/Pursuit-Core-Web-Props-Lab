@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Donations = (props) => {
+const Donors = (props) => {
     return (
-        <li className='donation-list'>
+        <li className='donor-list'>
             <div className='donor'>
                 <h5 className='names'>{props.name} donated ${props.amount}</h5>
-                {props.blurb}
+                <p>{props.blurb}</p>
             </div>
         </li>
     )
 }
 
-export default Donations;
+export default Donors;
