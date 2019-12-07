@@ -5,26 +5,53 @@ const Form = (props) => {
 
     const handleSubmit = (event) => event.preventDefault();
 
-
     return (
         <form onSubmit={handleSubmit}>
-            <div className="donation-name">
-                <div className='donatorName'>
-                    <label htmlFor='name'>Name</label>
-                    <input type="text" id="name" name='name' value={props.name} onChange={props.handleChange} />
-                </div>
-                <div className='captionDiv'>
-                    <label htmlFor='blurb'>Caption</label>
-                    <input type="text" id="blurb" name='blurb' value={props.blurb} onChange={props.handleChange} />
-                </div>
-                <div className='submitDiv'>
-                    <label htmlFor='amountInput'>Amount to Donate</label>
-                    <input type="range" name='monies' id="amount" min="5" max="1000" value={props.amount} onChange={props.handleChange} />
-                    <div className="submit-button">
-                        <p className='amount'>$ {props.amount}</p>
-                        <button type="button" className="donate button">Donate</button>
-                    </div>
-                </div>
+            <div className="form-group">
+                <label>Name</label>
+                <input
+                    value={props.name}
+                    onChange={props.handleChange}
+                    name='name'
+                    type="text"
+                    className="form-control"
+                    id="nameInput"
+                    placeholder="John Doe"
+                />
+            </div>
+            <div className="form-group">
+                <label>Caption</label>
+                <input
+                    value={props.blurb}
+                    onChange={props.handleChange}
+                    type="text"
+                    className="form-control"
+                    id="captionInput"
+                    placeholder="..."
+                    name='blurb'
+                />
+            </div>
+            <div className="form-group">
+                <label>Amount to Donate</label>
+                <input
+                    value={props.amount}
+                    onChange={props.handleChange}
+                    type="range"
+                    className="custom-range"
+                    id="amountInput"
+                    min="5"
+                    max="1000"
+                    name='amount'
+                />
+                <blockquote className="blockquote text-right">
+                    <p className="h3 mb-0" onChange={props.handleChange}>$ {props.amount}</p>
+                    <button
+                        type="button"
+                        className="btn btn-lg btn-success my-4"
+                    >
+                        Donate
+                    </button>
+                </blockquote>
             </div>
         </form>
     )

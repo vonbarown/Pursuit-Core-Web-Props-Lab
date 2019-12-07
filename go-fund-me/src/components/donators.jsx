@@ -2,10 +2,10 @@ import React from 'react';
 
 const Donors = (props) => {
     return (
-        <li className='donor-list'>
-            <div className='donor'>
-                <h5 className='names'>{props.name} donated ${props.amount}</h5>
-                <p>{props.blurb}</p>
+        <li className="media my-2">
+            <div className="media-body">
+                <h5 className="mt-0 mb-1">{props.name} donated ${props.amount}</h5>
+                {props.blurb}
             </div>
         </li>
     )
