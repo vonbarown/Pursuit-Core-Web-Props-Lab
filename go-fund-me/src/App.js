@@ -17,7 +17,8 @@ class App extends React.Component {
       amount: 0,
       blurb: "",
       goal: 20000,
-      raised: 0
+      raised: 0,
+      percentCompleted: 0
     };
 
     // handle change for the form
@@ -29,9 +30,21 @@ class App extends React.Component {
       });
     };
 
-    this.calcAmount = () => {
+    this.handleNewDonation = event => {
+      event.preventDefault();
+      const { raised, amount, name, blurb } = this.state;
+      const newDonor = { name, amount, blurb };
       this.setState({
-        raised: 9000
+        raised: raised + parseInt(amount),
+        donors: [...this.state.donors, newDonor],
+        // percentCompleted: raised / goal
+      });
+    };
+
+    this.calcPercentage = () => {
+      const { goal, raised } = this.state;
+      this.setState({
+        percentCompleted: raised / goal 
       });
     };
   }
@@ -41,7 +54,6 @@ class App extends React.Component {
     let { donors, goal, amount, raised } = this.state;
 
     console.log(this.state);
-    // console.log(this.calcAmount());
 
     const listItems = donors.map(el => {
       return (
@@ -65,7 +77,11 @@ class App extends React.Component {
             <div className="col-8">
               <ProgressBar raised={raised} goal={goal} />
               <hr />
-              <Form handleChange={this.handleChange} amount={amount} />
+              <Form
+                handleNewDonation={this.handleNewDonation}
+                handleChange={this.handleChange}
+                amount={amount}
+              />
             </div>
           </div>
         </div>

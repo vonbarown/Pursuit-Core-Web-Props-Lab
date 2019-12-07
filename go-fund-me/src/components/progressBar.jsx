@@ -3,6 +3,7 @@ import React from 'react'
 class ProgressBar extends React.Component {
 
     render() {
+        this.percent = (this.props.raised / this.props.goal) * 100
         return (<>
             <h2 className="mb-4">
                 Raised $ {this.props.raised} of <span className="text-muted">$ {this.props.goal}</span>
@@ -11,12 +12,12 @@ class ProgressBar extends React.Component {
                 <div
                     className="progress-bar bg-success"
                     role="progressbar"
-                    style={{ width: "55%" }}
+                    style={{ width: `${this.percent}%` }}
                     aria-valuenow="25"
                     aria-valuemin="0"
                     aria-valuemax="100"
                 >
-                    55%
+                    {this.percent}%
                 </div>
             </div>
         </>)

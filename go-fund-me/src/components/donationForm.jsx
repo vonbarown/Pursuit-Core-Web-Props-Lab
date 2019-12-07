@@ -3,10 +3,8 @@ import React from 'react'
 
 const Form = (props) => {
 
-    const handleSubmit = (event) => event.preventDefault();
-
     return (
-        <form onSubmit={handleSubmit}>
+        <form>
             <div className="form-group">
                 <label>Name</label>
                 <input
@@ -40,7 +38,7 @@ const Form = (props) => {
                     className="custom-range"
                     id="amountInput"
                     min="5"
-                    max="1000"
+                    max="10000"
                     name='amount'
                 />
                 <blockquote className="blockquote text-right">
@@ -48,6 +46,7 @@ const Form = (props) => {
                     <button
                         type="button"
                         className="btn btn-lg btn-success my-4"
+                        onClick={props.handleNewDonation}
                     >
                         Donate
                     </button>
