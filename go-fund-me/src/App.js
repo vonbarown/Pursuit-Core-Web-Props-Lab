@@ -1,96 +1,98 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Form from "./components/donationForm";
 import Donors from "./components/donators";
 import ProgressBar from "./components/progressBar";
 import TopBar from "./components/topBar";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      donors: [
-        // { name: "Voniel", amount: 450, blurb: "Help" },
-        // { name: "Otis", amount: 340, blurb: "look for me" },
-        // { name: "Frank", amount: 600, blurb: "monies" }
-      ],
-      name: "",
-      amount: 0,
-      blurb: "",
-      goal: 20000,
-      raised: 0
-    };
 
-    // handle change for the form
-    this.handleChange = event => {
-      const value = event.target.value;
-      this.setState({
-        ...this.prevState,
-        [event.target.name]: value
-      });
-    };
+const App = () => {
+  const goal = 20000
 
-    this.handleNewDonation = event => {
-      event.preventDefault();
-      const { raised, amount, name, blurb } = this.state;
-      const newDonor = { name, amount, blurb };
-      this.setState({
-        raised: raised + parseInt(amount),
-        donors: [...this.state.donors, newDonor],
+  const [name, setName] = useState('')
+  const [caption, setCaption] = useState('')
+  const [amount, setAmount] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const [percentage, setPercentage] = useState(0)
+  const [donations, setDonations] = useState([])
 
-        // name: '',
-        // amount: 0,
-        // blurb:''
-      });
-    };
-  }
+
+  const changeName = e => setName(e.target.value)
+
+  const changeCaption = e => setCaption(e.target.value)
+
+  const changeAmount = e => setAmount(e.target.value)
+
+  const handleNewDonation = event => {
+    event.preventDefault();
+
+    let donationsArr = []
+
+    const newDonor = { name, amount, caption };
+
+    for (let i of donations) {
+      donations.push(i)
+    }
+    donationsArr.push(newDonor)
+
+
+    setDonations(donationsArr)
+    setProgress(progress + parseInt(amount))
+    setPercentage((progress * 5000) / 1000)
+  };
+
+
 
   //render the information to the screen
-  render() {
-    let { donors, goal, amount, raised } = this.state;
+  // let { donors, goal, amount, raised } = this.state;
 
-    console.log(this.state);
+  // console.log(this.state);
 
-    const listItems = donors.map(el => {
-      return (
-        <Donors
-          key={el.name}
-          name={el.name}
-          amount={el.amount}
-          blurb={el.blurb}
-        />
-      );
-    });
-
+  const listItems = donations.map(el => {
     return (
-      <div className="App">
-        
-        <TopBar motivation='Help me get a Disney+ account' />
-        
-        <div className="container">
+      <Donors
+        key={el.name}
+        name={el.name}
+        amount={el.amount}
+        blurb={el.caption}
+      />
+    );
+  });
+
+  return (
+    <div className="App">
+
+      <TopBar motivation='Help me get a Disney+ account' />
+
+      <div className="container">
         <div className="row">
-            <ul className="col-4 list-unstyled recent-donations">
-              <h5>Recent Donations</h5>
-              {listItems}
-            </ul>
-            <div className="col-8">
-              
-              <ProgressBar
-                raised={raised}
-                goal={goal}
-              />
-              <hr />
-              <Form
-                handleNewDonation={this.handleNewDonation}
-                handleChange={this.handleChange}
-                amount={amount}
-              />
-            </div>
+          <ul className="col-4 list-unstyled recent-donations">
+            <h5>Recent Donations</h5>
+            {
+              listItems}
+          </ul>
+          <div className="col-8">
+
+            <ProgressBar
+              raised={progress}
+              goal={goal}
+            />
+            <hr />
+            <Form
+              name={name}
+              caption={caption}
+              changeName={changeName}
+              changeCaption={changeCaption}
+              changeAmount={changeAmount}
+              handleNewDonation={handleNewDonation}
+              percent={percentage}
+              amount={amount}
+            />
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;

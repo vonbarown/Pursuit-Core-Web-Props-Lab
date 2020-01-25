@@ -9,7 +9,7 @@ const Form = (props) => {
                 <label>Name</label>
                 <input
                     value={props.name}
-                    onChange={props.handleChange}
+                    onChange={props.changeName}
                     name='name'
                     type="text"
                     className="form-control"
@@ -20,8 +20,8 @@ const Form = (props) => {
             <div className="form-group">
                 <label>Caption</label>
                 <input
-                    value={props.blurb}
-                    onChange={props.handleChange}
+                    value={props.caption}
+                    onChange={props.changeCaption}
                     type="text"
                     className="form-control"
                     id="captionInput"
@@ -33,7 +33,7 @@ const Form = (props) => {
                 <label>Amount to Donate</label>
                 <input
                     value={props.amount}
-                    onChange={props.handleChange}
+                    onChange={props.changeAmount}
                     type="range"
                     className="custom-range"
                     id="amountInput"
