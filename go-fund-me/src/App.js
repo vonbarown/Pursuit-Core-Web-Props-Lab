@@ -13,7 +13,6 @@ const App = () => {
   const [caption, setCaption] = useState('')
   const [amount, setAmount] = useState(0)
   const [progress, setProgress] = useState(0)
-  const [percentage, setPercentage] = useState(0)
   const [donations, setDonations] = useState([])
 
 
@@ -25,9 +24,7 @@ const App = () => {
 
   const handleNewDonation = event => {
     event.preventDefault();
-
     let donationsArr = []
-
     const newDonor = { name, amount, caption };
 
     for (let i of donations) {
@@ -35,18 +32,10 @@ const App = () => {
     }
     donationsArr.push(newDonor)
 
-
     setDonations(donationsArr)
     setProgress(progress + parseInt(amount))
-    setPercentage((progress * 5000) / 1000)
   };
 
-
-
-  //render the information to the screen
-  // let { donors, goal, amount, raised } = this.state;
-
-  // console.log(this.state);
 
   const listItems = donations.map(el => {
     return (
@@ -85,7 +74,6 @@ const App = () => {
               changeCaption={changeCaption}
               changeAmount={changeAmount}
               handleNewDonation={handleNewDonation}
-              percent={percentage}
               amount={amount}
             />
           </div>

@@ -2,6 +2,7 @@ import React from 'react'
 
 const ProgressBar = (props) => {
 
+    const percent = props.goal / props.raised
     return (<>
         <h2 className="mb-4">
             Raised $ {props.raised} of <span className="text-muted">$ {props.goal}</span>
@@ -10,12 +11,12 @@ const ProgressBar = (props) => {
             <div
                 className="progress-bar bg-success"
                 role="progressbar"
-                style={{ width: `${props.percent}%` }}
+                style={{ width: `${percent}%` }}
                 aria-valuenow="25"
                 aria-valuemin="0"
                 aria-valuemax="100"
             >
-                {props.percent}%
+                {parseInt(percent)}%
                 </div>
         </div>
     </>)
